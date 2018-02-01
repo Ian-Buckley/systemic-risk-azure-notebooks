@@ -23,7 +23,20 @@ git config --global user.email ian.r.c.buckley@gmail.com
 git config push.default simple
 git config -l  
 ```
-
+Sample output:
+```
+user.email=ian.r.c.buckley@gmail.com
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=https://github.com/roguetrainer/systemic-risk
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+push.default=simple
+nbuser@nbserver:~/libra
+```
 ### Push
 ```PowerShell
 git push
