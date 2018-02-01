@@ -9,7 +9,7 @@ Enter the commands here:
 https://notebooks.azure.com/help/libraries/terminal 
 
 ## Initial set up 
-```powershell
+```PowerShell
 cd ~/library  
 ls -l
 ```
