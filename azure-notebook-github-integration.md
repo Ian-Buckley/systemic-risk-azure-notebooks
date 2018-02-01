@@ -49,4 +49,37 @@ Password for 'https://roguetrainer@github.com': <ENTER-PASSWORD>
 Everything up-to-date
 nbuser@nbserver:~/library$ ^C
 nbuser@nbserver:~/library$
+```
 
+### Git `add`, `commit`, `push`, `log`
+From Mike Clymer's blog:
+* See what is untracked using `status`
+* `add` the new (e.g. notebook)  
+* `commit`
+* `push`
+* `log`
+```PowerShell
+git status
+git add newnotebook.ipynb
+git commit -am "Adding somenotebook.ipynb"
+git push
+git log
+```
+Sample session:
+```
+nbuser@nbserver:~/library$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   azure-notebook-github-integration.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+nbuser@nbserver:~/library$ git commit -a
+[master 040a506] Small corrections
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+nbuser@nbserver:~/library$ ^C
+
+```
