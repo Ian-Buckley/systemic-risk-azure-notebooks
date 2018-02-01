@@ -10,7 +10,8 @@ See also
 1. Create [github](https://github.com/) repository
 2. Import to [Azure notebooks](https://notebooks.azure.com)
 3. Use the [Azure terminal](https://notebooks.azure.com/help/libraries/terminal) to configure git
-4. Sync files between Azure & github
+4. Sync files between Azure & github using `push` & `pull`
+5. Use `status` to see what has been modified & needs to be `commit`ed
 
 
 ### Git Configuration 
