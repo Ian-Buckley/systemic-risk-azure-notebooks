@@ -80,6 +80,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 nbuser@nbserver:~/library$ git commit -a
 [master 040a506] Small corrections
  1 file changed, 15 insertions(+), 1 deletion(-)
-nbuser@nbserver:~/library$ ^C
-
+```
+If things get modified at both ends, try:
+```
+git reset --hard origin/master
 ```
