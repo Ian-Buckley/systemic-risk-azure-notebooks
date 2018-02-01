@@ -12,16 +12,14 @@ See also
 3. Use the [Azure terminal](https://notebooks.azure.com/help/libraries/terminal) to configure git
 4. Sync files between Azure & github
 
-### Initial set up 
+
+### Git Configuration 
+Set your local Git configuration for access to your remote GitHub repository.
 ```PowerShell
 cd ~/library  
 ls -l
-```
-
-### Git Configuration 
-```PowerShell
-git config --global user.name "John Doe"  
-git config --global user.email johndoe@example.com  
+git config --global user.name "roguetrainer"  
+git config --global user.email ian.r.c.buckley@gmail.com 
 git config push.default simple
 git config -l  
 ```
@@ -30,3 +28,12 @@ git config -l
 ```PowerShell
 git push
 ``` 
+Sample session:
+```
+nbuser@nbserver:~/library$ git push
+Username for 'https://github.com': roguetrainer
+Password for 'https://roguetrainer@github.com': <ENTER-PASSWORD>
+Everything up-to-date
+nbuser@nbserver:~/library$ ^C
+nbuser@nbserver:~/library$
+
