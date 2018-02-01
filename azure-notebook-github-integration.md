@@ -19,11 +19,11 @@ ls -l
 ```PowerShell
 git config --global user.name "John Doe"  
 git config --global user.email johndoe@example.com  
+get config push.default simple
 git config -l  
 ```
 
-## Git Configuration 
+## Push
 ```PowerShell
-git config --global user.name "John Doe"
-git config --global user.email johndoe@example.com
+git push
 ``` 
