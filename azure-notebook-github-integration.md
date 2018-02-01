@@ -51,7 +51,7 @@ nbuser@nbserver:~/library$ ^C
 nbuser@nbserver:~/library$
 ```
 
-### Git `add`, `commit`, `push`, `log`
+### `git` + `add`, `commit`, `push`, `log`
 From Mike Clymer's blog:
 * See what is untracked using `status`
 * `add` the new (e.g. notebook)  
@@ -81,6 +81,11 @@ nbuser@nbserver:~/library$ git commit -a
 [master 040a506] Small corrections
  1 file changed, 15 insertions(+), 1 deletion(-)
 ```
+## `git pull`
+```
+git pull
+```
+
 If things get modified at both ends, try:
 ```
 git reset --hard origin/master
