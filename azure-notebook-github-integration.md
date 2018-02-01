@@ -9,10 +9,10 @@ Enter the commands here:
 https://notebooks.azure.com/help/libraries/terminal 
 
 ## Initial set up 
-<code></code><code>PowerShell
+```powershell
 cd ~/library  
 ls -l
-</code><code></code>
+```
 
 ## Git Configuration 
 <code></code><code>PowerShell
