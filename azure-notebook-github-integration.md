@@ -7,22 +7,18 @@ See also
   * https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration  
 
 ## Overview
-1. Create github repository
-2. Import to Azure notebooks
-3. Use the Azure terminal to configure git
+1. Create [github](https://github.com/) repository
+2. Import to [Azure notebooks](https://notebooks.azure.com)
+3. Use the [Azure terminal](https://notebooks.azure.com/help/libraries/terminal) to configure git
 4. Sync files between Azure & github
 
-## Open Azure terminal
-Enter the commands in the Azure terminal in your browser:
-https://notebooks.azure.com/help/libraries/terminal 
-
-## Initial set up 
+### Initial set up 
 ```PowerShell
 cd ~/library  
 ls -l
 ```
 
-## Git Configuration 
+### Git Configuration 
 ```PowerShell
 git config --global user.name "John Doe"  
 git config --global user.email johndoe@example.com  
@@ -30,7 +26,7 @@ git config push.default simple
 git config -l  
 ```
 
-## Push
+### Push
 ```PowerShell
 git push
 ``` 
