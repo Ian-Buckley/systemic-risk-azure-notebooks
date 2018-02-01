@@ -25,6 +25,7 @@ git config -l
 ```
 Sample output:
 ```
+nbuser@nbserver:~/library$ git config -l
 user.email=ian.r.c.buckley@gmail.com
 core.repositoryformatversion=0
 core.filemode=true
@@ -35,7 +36,6 @@ remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 branch.master.remote=origin
 branch.master.merge=refs/heads/master
 push.default=simple
-nbuser@nbserver:~/libra
 ```
 ### Push
 ```PowerShell
