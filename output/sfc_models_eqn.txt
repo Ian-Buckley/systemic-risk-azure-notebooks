@@ -1,0 +1,66 @@
+
+
+Final Equations:
+          GOV__F = GOV__LAG_F +GOV__T -GOV__DEM_GOOD                            # [F] Financial assets
+   GOV__FISC_BAL = GOV__INC                                                     # [FISC_BAL] Government Fiscal Balance
+        GOV__INC = GOV__T -GOV__DEM_GOOD                                        # [INC] Income (PreTax)
+      GOV__LAG_F = GOV__F (k -1 )                                               # [LAG_F] Previous periods financial assets.
+   GOV__PRIM_BAL = GOV__T -GOV__DEM_GOOD                                        # [PRIM_BAL] Government Primary Fiscal Balance
+          GOV__T = TF__T                                                        # [T] Government Taxes
+    HH__AfterTax = HH__INC -HH__T                                               # [AfterTax] Aftertax income
+    HH__AlphaFin = 0.4000                                                       # [AlphaFin] Parameter for consumption out of financial assets
+ HH__AlphaIncome = 0.6000                                                       # [AlphaIncome] Parameter for consumption out of income
+    HH__DEM_GOOD = HH__AlphaIncome *HH__EXP_AfterTax +HH__AlphaFin *HH__LAG_F   # [DEM_GOOD] Expenditure on goods consumption
+HH__EXP_AfterTax = HH__LAG_AfterTax                                             # [EXP_AfterTax] Expected Aftertax income
+           HH__F = HH__LAG_F -HH__T +HH__SUP_LAB -HH__DEM_GOOD                  # [F] Financial assets
+         HH__INC = HH__SUP_LAB                                                  # [INC] Income (PreTax)
+HH__LAG_AfterTax = HH__AfterTax (k -1 )                                         # [LAG_AfterTax] Lagged Aftertax income
+       HH__LAG_F = HH__F (k -1 )                                                # [LAG_F] Previous periods financial assets.
+     HH__SUP_LAB = 0. +LAB__SUP_HH                                              # [SUP_LAB] Supply of Labour
+           HH__T = TF__TaxRate *HH__INC                                         # [T] Taxes paid.
+    BUS__DEM_LAB = GOOD__SUP_GOOD                                               # [DEM_LAB] Demand for labour
+          BUS__F = BUS__LAG_F -BUS__DEM_LAB +BUS__SUP_GOOD                      # [F] Financial assets
+        BUS__INC = -BUS__DEM_LAB +BUS__SUP_GOOD                                 # [INC] Income (PreTax)
+      BUS__LAG_F = BUS__F (k -1 )                                               # [LAG_F] Previous periods financial assets.
+       BUS__PROF = BUS__SUP_GOOD -BUS__DEM_LAB                                  # [PROF] Profits
+   BUS__SUP_GOOD = GOOD__SUP_BUS                                                # [SUP_GOOD] Supply of goods
+           TF__T = TF__TaxRate *HH__INC                                         # [T] Taxes Paid
+     TF__TaxRate = 0.2000                                                       # [TaxRate] Tax rate
+    LAB__DEM_LAB = BUS__DEM_LAB                                                 # [DEM_LAB] Demand for Market LAB
+     LAB__SUP_HH = LAB__SUP_LAB                                                 # [SUP_HH] Supply from Household
+    LAB__SUP_LAB = LAB__DEM_LAB                                                 # [SUP_LAB] Supply for market LAB
+  GOOD__DEM_GOOD = GOV__DEM_GOOD +HH__DEM_GOOD                                  # [DEM_GOOD] Demand for Market GOOD
+   GOOD__SUP_BUS = GOOD__SUP_GOOD                                               # [SUP_BUS] Supply from Business Sector
+  GOOD__SUP_GOOD = GOOD__DEM_GOOD                                               # [SUP_GOOD] Supply for market GOOD
+ HH__AfterTax(0) = 16.0                                                         # Initial Condition
+
+# Exogenous Variables
+
+   GOV__DEM_GOOD =  [0. ,]+[20. ,]*105                                          # [DEM_GOOD] Government Consumption of Goods
+
+MaxTime = 100
+Err_Tolerance=1e-6
+
+
+Reduced Equations
+Endogenous:
+GOV__F = GOV__LAG_F+TF__T-GOV__DEM_GOOD
+GOV__INC = TF__T-GOV__DEM_GOOD
+HH__AfterTax = HH__SUP_LAB-HH__T
+HH__AlphaFin = 0.4000
+HH__AlphaIncome = 0.6000
+HH__DEM_GOOD = HH__AlphaIncome*HH__LAG_AfterTax+HH__AlphaFin*HH__LAG_F
+HH__F = HH__LAG_F-HH__T+HH__SUP_LAB-HH__DEM_GOOD
+HH__SUP_LAB = 0.+GOOD__DEM_GOOD
+HH__T = TF__TaxRate*HH__SUP_LAB
+BUS__F = BUS__LAG_F-GOOD__DEM_GOOD+GOOD__DEM_GOOD
+TF__T = TF__TaxRate*HH__SUP_LAB
+TF__TaxRate = 0.2000
+GOOD__DEM_GOOD = GOV__DEM_GOOD+HH__DEM_GOOD
+Lagged:
+GOV__LAG_F = GOV__F(k-1)
+HH__LAG_AfterTax = HH__AfterTax(k-1)
+HH__LAG_F = HH__F(k-1)
+BUS__LAG_F = BUS__F(k-1)
+Exogenous:
+GOV__DEM_GOOD = [0. ,]+[20. ,]*105

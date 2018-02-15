@@ -1,0 +1,358 @@
+EconomicObject Created: <class 'sfc_models.models.Model'> ID = 1
+EconomicObject Created: <class 'sfc_models.models.Country'> ID = 2
+Adding Country: C1 ID=2
+Creating new currency zone C1, adding C1 to it
+EconomicObject Created: <class 'sfc_models.models.CurrencyZone'> ID = 3
+EconomicObject Created: <class 'sfc_models.sector_definitions.ConsolidatedGovernment'> ID = 4
+Adding Sector GOV To Country C1
+ [ID=4] Variable Added: F = F=LAG_F # Financial assets # Financial assets
+ [ID=4] Variable Added: INC = INC=0.0 # Income (PreTax) # Income (PreTax)
+ [ID=4] Variable Added: LAG_F = F(k-1) # Previous periods financial assets.
+ [ID=4] Variable Added: DEM_GOOD = 0.0 # Government Consumption of Goods
+ [ID=4] Variable Added: PRIM_BAL = T - DEM_GOOD # Government Primary Fiscal Balance
+ [ID=4] Variable Added: FISC_BAL = INC # Government Fiscal Balance
+ [ID=4] Variable Added: T = 0. # Government Taxes
+EconomicObject Created: <class 'sfc_models.sector_definitions.HouseholdWithExpectations'> ID = 5
+Adding Sector HH To Country C1
+ [ID=5] Variable Added: F = F=LAG_F # Financial assets # Financial assets
+ [ID=5] Variable Added: INC = INC=0.0 # Income (PreTax) # Income (PreTax)
+ [ID=5] Variable Added: LAG_F = F(k-1) # Previous periods financial assets.
+    Registering cash flow exclusion: DEM_GOOD for ID=5
+ [ID=5] Variable Added: AlphaIncome = 0.6000 # Parameter for consumption out of income
+ [ID=5] Variable Added: AlphaFin = 0.4000 # Parameter for consumption out of financial assets
+ [ID=5] Variable Added: DEM_GOOD = AlphaIncome * AfterTax + AlphaFin * LAG_F # Expenditure on goods consumption
+ [ID=5] Variable Added: AfterTax = INC - T # Aftertax income
+ [ID=5] Variable Added: T =  # Taxes paid.
+ [ID=5] Variable Added: SUP_LAB = 0. # Supply of Labour
+ [ID=5] Equation set: DEM_GOOD = AlphaIncome * EXP_AfterTax + AlphaFin * LAG_F 
+ [ID=5] Variable Added: LAG_AfterTax = AfterTax(k-1) # Lagged Aftertax income
+ [ID=5] Variable Added: EXP_AfterTax = LAG_AfterTax # Expected Aftertax income
+EconomicObject Created: <class 'sfc_models.sector_definitions.FixedMarginBusiness'> ID = 6
+Adding Sector BUS To Country C1
+ [ID=6] Variable Added: F = F=LAG_F # Financial assets # Financial assets
+ [ID=6] Variable Added: INC = INC=0.0 # Income (PreTax) # Income (PreTax)
+ [ID=6] Variable Added: LAG_F = F(k-1) # Previous periods financial assets.
+ [ID=6] Variable Added: SUP_GOOD =  # Supply of goods
+ [ID=6] Variable Added: PROF = SUP_GOOD - DEM_LAB # Profits
+EconomicObject Created: <class 'sfc_models.sector_definitions.TaxFlow'> ID = 7
+Adding Sector TF To Country C1
+ [ID=7] Variable Added: TaxRate = 0.2000 # Tax rate
+ [ID=7] Variable Added: T =  # Taxes Paid
+EconomicObject Created: <class 'sfc_models.sector.Market'> ID = 8
+Adding Sector LAB To Country C1
+ [ID=8] Variable Added: SUP_LAB =  # Supply for market LAB
+ [ID=8] Variable Added: DEM_LAB =  # Demand for market LAB
+EconomicObject Created: <class 'sfc_models.sector.Market'> ID = 9
+Adding Sector GOOD To Country C1
+ [ID=9] Variable Added: SUP_GOOD =  # Supply for market GOOD
+ [ID=9] Variable Added: DEM_GOOD =  # Demand for market GOOD
+    Adding exogenous variable: DEM_GOOD in <sfc_models.sector_definitions.ConsolidatedGovernment object at 0x7f918325bb70>
+    Adding initial condition: AfterTax in HH
+Starting Model main()
+  Generating FullSector codes (Model._GenerateFullSectorCodes()
+Model._GenerateEquations()
+  Calling _GenerateEquations on GOV  (<class 'sfc_models.sector_definitions.ConsolidatedGovernment'>)
+  Calling _GenerateEquations on HH  (<class 'sfc_models.sector_definitions.HouseholdWithExpectations'>)
+ [ID=5] Equation set: AlphaIncome = 0.6000 
+ [ID=5] Equation set: AlphaFin = 0.4000 
+  Calling _GenerateEquations on BUS  (<class 'sfc_models.sector_definitions.FixedMarginBusiness'>)
+   Searching for Market Sector with Code GOOD in parent country
+ [ID=6] Variable Added: DEM_LAB = GOOD__SUP_GOOD # Demand for labour
+  Calling _GenerateEquations on TF  (<class 'sfc_models.sector_definitions.TaxFlow'>)
+ [ID=7] Equation set: TaxRate = 0.2000 
+ [ID=5] Equation set: T = TF__TaxRate * HH__INC 
+ [ID=7] Equation set: T = TF__TaxRate * HH__INC 
+ [ID=4] Equation set: T = TF__T 
+  Calling _GenerateEquations on LAB  (<class 'sfc_models.sector.Market'>)
+  Market LAB searching Country C1 for a supplier
+  Searching for demand for market LAB
+  [ID=8] Variable Overwritten: DEM_LAB
+ [ID=8] Variable Added: DEM_LAB =  # Demand for Market LAB
+         Variable DEM_LAB does not exist in GOV
+         Variable DEM_LAB does not exist in HH
+         Variable DEM_LAB does not exist in TF
+         Variable DEM_LAB does not exist in GOOD
+ [ID=8] Equation set: DEM_LAB =  BUS__DEM_LAB 
+ [ID=8] Equation set: SUP_LAB = DEM_LAB 
+ [ID=8] Variable Added: SUP_HH = SUP_LAB # Supply from Household
+ Adding term +LAB__SUP_HH to Equation SUP_LAB in Sector HH [ID=5]
+  Calling _GenerateEquations on GOOD  (<class 'sfc_models.sector.Market'>)
+  Market GOOD searching Country C1 for a supplier
+  Searching for demand for market GOOD
+  [ID=9] Variable Overwritten: DEM_GOOD
+ [ID=9] Variable Added: DEM_GOOD =  # Demand for Market GOOD
+ [ID=4] Equation set: DEM_GOOD =  
+         Variable DEM_GOOD does not exist in BUS
+         Variable DEM_GOOD does not exist in TF
+         Variable DEM_GOOD does not exist in LAB
+ [ID=9] Equation set: DEM_GOOD =  GOV__DEM_GOOD+ HH__DEM_GOOD 
+ [ID=9] Equation set: SUP_GOOD = DEM_GOOD 
+ [ID=9] Variable Added: SUP_BUS = SUP_GOOD # Supply from Business Sector
+ Adding term +GOOD__SUP_BUS to Equation SUP_GOOD in Sector BUS [ID=6]
+  Fixing aliases (Model._FixAliases)
+Model._GenerateRegisteredCashFlows()
+  Adding 0 cash flows to sectors
+  Processing 1 exogenous variables
+ [ID=4] Equation set: DEM_GOOD = EXOGENOUS [0.,] + [20.,] * 105 
+Model._CreateFinalEquations()
+  Generating 1 initial conditions
+    _FinalEquationFormatting()
+Set Initial Conditions
+Step: 1
+  Number of iterations: 6
+Step: 2
+  Number of iterations: 6
+Step: 3
+  Number of iterations: 6
+Step: 4
+  Number of iterations: 6
+Step: 5
+  Number of iterations: 6
+Step: 6
+  Number of iterations: 6
+Step: 7
+  Number of iterations: 6
+Step: 8
+  Number of iterations: 6
+Step: 9
+  Number of iterations: 6
+Step: 10
+  Number of iterations: 6
+Step: 11
+  Number of iterations: 6
+Step: 12
+  Number of iterations: 6
+Step: 13
+  Number of iterations: 6
+Step: 14
+  Number of iterations: 6
+Step: 15
+  Number of iterations: 6
+Step: 16
+  Number of iterations: 6
+Step: 17
+  Number of iterations: 6
+Step: 18
+  Number of iterations: 6
+Step: 19
+  Number of iterations: 6
+Step: 20
+  Number of iterations: 6
+Step: 21
+  Number of iterations: 6
+Step: 22
+  Number of iterations: 6
+Step: 23
+  Number of iterations: 6
+Step: 24
+  Number of iterations: 6
+Step: 25
+  Number of iterations: 6
+Step: 26
+  Number of iterations: 6
+Step: 27
+  Number of iterations: 6
+Step: 28
+  Number of iterations: 6
+Step: 29
+  Number of iterations: 6
+Step: 30
+  Number of iterations: 6
+Step: 31
+  Number of iterations: 6
+Step: 32
+  Number of iterations: 6
+Step: 33
+  Number of iterations: 6
+Step: 34
+  Number of iterations: 6
+Step: 35
+  Number of iterations: 6
+Step: 36
+  Number of iterations: 6
+Step: 37
+  Number of iterations: 6
+Step: 38
+  Number of iterations: 6
+Step: 39
+  Number of iterations: 6
+Step: 40
+  Number of iterations: 6
+Step: 41
+  Number of iterations: 6
+Step: 42
+  Number of iterations: 6
+Step: 43
+  Number of iterations: 6
+Step: 44
+  Number of iterations: 6
+Step: 45
+  Number of iterations: 6
+Step: 46
+  Number of iterations: 6
+Step: 47
+  Number of iterations: 6
+Step: 48
+  Number of iterations: 6
+Step: 49
+  Number of iterations: 6
+Step: 50
+  Number of iterations: 6
+Step: 51
+  Number of iterations: 6
+Step: 52
+  Number of iterations: 6
+Step: 53
+  Number of iterations: 6
+Step: 54
+  Number of iterations: 6
+Step: 55
+  Number of iterations: 6
+Step: 56
+  Number of iterations: 6
+Step: 57
+  Number of iterations: 6
+Step: 58
+  Number of iterations: 6
+Step: 59
+  Number of iterations: 6
+Step: 60
+  Number of iterations: 6
+Step: 61
+  Number of iterations: 6
+Step: 62
+  Number of iterations: 6
+Step: 63
+  Number of iterations: 6
+Step: 64
+  Number of iterations: 6
+Step: 65
+  Number of iterations: 6
+Step: 66
+  Number of iterations: 6
+Step: 67
+  Number of iterations: 6
+Step: 68
+  Number of iterations: 6
+Step: 69
+  Number of iterations: 6
+Step: 70
+  Number of iterations: 6
+Step: 71
+  Number of iterations: 6
+Step: 72
+  Number of iterations: 6
+Step: 73
+  Number of iterations: 6
+Step: 74
+  Number of iterations: 6
+Step: 75
+  Number of iterations: 6
+Step: 76
+  Number of iterations: 5
+Step: 77
+  Number of iterations: 3
+Step: 78
+  Number of iterations: 2
+Step: 79
+  Number of iterations: 3
+Step: 80
+  Number of iterations: 2
+Step: 81
+  Number of iterations: 3
+Step: 82
+  Number of iterations: 2
+Step: 83
+  Number of iterations: 2
+Step: 84
+  Number of iterations: 1
+Step: 85
+  Number of iterations: 2
+Step: 86
+  Number of iterations: 2
+Step: 87
+  Number of iterations: 1
+Step: 88
+  Number of iterations: 2
+Step: 89
+  Number of iterations: 1
+Step: 90
+  Number of iterations: 1
+Step: 91
+  Number of iterations: 1
+Step: 92
+  Number of iterations: 2
+Step: 93
+  Number of iterations: 1
+Step: 94
+  Number of iterations: 1
+Step: 95
+  Number of iterations: 1
+Step: 96
+  Number of iterations: 2
+Step: 97
+  Number of iterations: 1
+Step: 98
+  Number of iterations: 1
+Step: 99
+  Number of iterations: 1
+Step: 100
+  Number of iterations: 2
+------------------------------
+Starting LogInfo() Data Dump
+------------------------------
+  Generating FullSector codes (Model._GenerateFullSectorCodes()
+Country: Code= "C1" C1
+============================================================
+
+[GOV] Government. FullCode = "GOV" 
+------------------------------------------------------------
+DEM_GOOD=EXOGENOUS[0.,]+[20.,]*105 # Government Consumption of Goods
+F=LAG_F +T -DEM_GOOD  # Financial assets
+FISC_BAL=INC  # Government Fiscal Balance
+INC=T -DEM_GOOD  # Income (PreTax)
+LAG_F=F (k -1 ) # Previous periods financial assets.
+PRIM_BAL=T -DEM_GOOD  # Government Primary Fiscal Balance
+T=TF__T  # Government Taxes
+
+[HH] Household. FullCode = "HH" 
+------------------------------------------------------------
+AfterTax=INC -T  # Aftertax income
+AlphaFin=0.4000  # Parameter for consumption out of financial assets
+AlphaIncome=0.6000  # Parameter for consumption out of income
+DEM_GOOD=AlphaIncome *EXP_AfterTax +AlphaFin *LAG_F  # Expenditure on goods consumption
+EXP_AfterTax=LAG_AfterTax  # Expected Aftertax income
+F=LAG_F -T +SUP_LAB -DEM_GOOD  # Financial assets
+INC=SUP_LAB  # Income (PreTax)
+LAG_AfterTax=AfterTax (k -1 ) # Lagged Aftertax income
+LAG_F=F (k -1 ) # Previous periods financial assets.
+SUP_LAB=0. +LAB__SUP_HH  # Supply of Labour
+T=TF__TaxRate *HH__INC  # Taxes paid.
+
+[BUS] Business Sector. FullCode = "BUS" 
+------------------------------------------------------------
+DEM_LAB=GOOD__SUP_GOOD  # Demand for labour
+F=LAG_F -DEM_LAB +SUP_GOOD  # Financial assets
+INC=-DEM_LAB +SUP_GOOD  # Income (PreTax)
+LAG_F=F (k -1 ) # Previous periods financial assets.
+PROF=SUP_GOOD -DEM_LAB  # Profits
+SUP_GOOD=GOOD__SUP_BUS  # Supply of goods
+
+[TF] TaxFlow. FullCode = "TF" 
+------------------------------------------------------------
+T=TF__TaxRate *HH__INC  # Taxes Paid
+TaxRate=0.2000  # Tax rate
+
+[LAB] Labour market. FullCode = "LAB" 
+------------------------------------------------------------
+DEM_LAB=BUS__DEM_LAB  # Demand for Market LAB
+SUP_HH=SUP_LAB  # Supply from Household
+SUP_LAB=DEM_LAB  # Supply for market LAB
+
+[GOOD] Goods market. FullCode = "GOOD" 
+------------------------------------------------------------
+DEM_GOOD=GOV__DEM_GOOD +HH__DEM_GOOD  # Demand for Market GOOD
+SUP_BUS=SUP_GOOD  # Supply from Business Sector
+SUP_GOOD=DEM_GOOD  # Supply for market GOOD
+
+Writing LogInfo to log="eqn"

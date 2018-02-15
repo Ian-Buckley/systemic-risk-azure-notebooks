@@ -1,0 +1,5 @@
+{
+    "random_seed": 1518382859.9901443,
+    "name": "ipythonsimulation",
+    "num_kids": 5
+}
