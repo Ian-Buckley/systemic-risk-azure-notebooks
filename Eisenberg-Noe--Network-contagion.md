@@ -1,1 +1,0 @@
-This demo is in the Matlab / Octave languages, which are not currently supported by Azure Notebook.
