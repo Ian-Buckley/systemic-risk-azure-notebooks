@@ -6,6 +6,7 @@ Home-page: http://github.com/marcobardoscia/neva
 Author: Marco Bardoscia
 Author-email: marco.open@gmail.com
 License: LGPLv3
+Description-Content-Type: UNKNOWN
 Description: This is an implementation of the Neva framework 
                                introduced in https://ssrn.com/abstract=2795583. Neva 
                                allows to perform the valuation of equities of banks 

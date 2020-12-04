@@ -1,99 +1,99 @@
-EconomicObject Created: <class 'sfc_models.models.Model'> ID = 1
-EconomicObject Created: <class 'sfc_models.models.Country'> ID = 2
-Adding Country: C1 ID=2
+EconomicObject Created: <class 'sfc_models.models.Model'> ID = 0
+EconomicObject Created: <class 'sfc_models.models.Country'> ID = 1
+Adding Country: C1 ID=1
 Creating new currency zone C1, adding C1 to it
-EconomicObject Created: <class 'sfc_models.models.CurrencyZone'> ID = 3
-EconomicObject Created: <class 'sfc_models.sector_definitions.ConsolidatedGovernment'> ID = 4
+EconomicObject Created: <class 'sfc_models.models.CurrencyZone'> ID = 2
+EconomicObject Created: <class 'sfc_models.sector_definitions.ConsolidatedGovernment'> ID = 3
 Adding Sector GOV To Country C1
+ [ID=3] Variable Added: F = F=LAG_F # Financial assets # Financial assets
+ [ID=3] Variable Added: INC = INC=0.0 # Income (PreTax) # Income (PreTax)
+ [ID=3] Variable Added: LAG_F = F(k-1) # Previous periods financial assets.
+ [ID=3] Variable Added: DEM_GOOD = 0.0 # Government Consumption of Goods
+ [ID=3] Variable Added: PRIM_BAL = T - DEM_GOOD # Government Primary Fiscal Balance
+ [ID=3] Variable Added: FISC_BAL = INC # Government Fiscal Balance
+ [ID=3] Variable Added: T = 0. # Government Taxes
+EconomicObject Created: <class 'sfc_models.sector_definitions.HouseholdWithExpectations'> ID = 4
+Adding Sector HH To Country C1
  [ID=4] Variable Added: F = F=LAG_F # Financial assets # Financial assets
  [ID=4] Variable Added: INC = INC=0.0 # Income (PreTax) # Income (PreTax)
  [ID=4] Variable Added: LAG_F = F(k-1) # Previous periods financial assets.
- [ID=4] Variable Added: DEM_GOOD = 0.0 # Government Consumption of Goods
- [ID=4] Variable Added: PRIM_BAL = T - DEM_GOOD # Government Primary Fiscal Balance
- [ID=4] Variable Added: FISC_BAL = INC # Government Fiscal Balance
- [ID=4] Variable Added: T = 0. # Government Taxes
-EconomicObject Created: <class 'sfc_models.sector_definitions.HouseholdWithExpectations'> ID = 5
-Adding Sector HH To Country C1
+    Registering cash flow exclusion: DEM_GOOD for ID=4
+ [ID=4] Variable Added: AlphaIncome = 0.6000 # Parameter for consumption out of income
+ [ID=4] Variable Added: AlphaFin = 0.4000 # Parameter for consumption out of financial assets
+ [ID=4] Variable Added: DEM_GOOD = AlphaIncome * AfterTax + AlphaFin * LAG_F # Expenditure on goods consumption
+ [ID=4] Variable Added: AfterTax = INC - T # Aftertax income
+ [ID=4] Variable Added: T =  # Taxes paid.
+ [ID=4] Variable Added: SUP_LAB = 0. # Supply of Labour
+ [ID=4] Equation set: DEM_GOOD = AlphaIncome * EXP_AfterTax + AlphaFin * LAG_F 
+ [ID=4] Variable Added: LAG_AfterTax = AfterTax(k-1) # Lagged Aftertax income
+ [ID=4] Variable Added: EXP_AfterTax = LAG_AfterTax # Expected Aftertax income
+EconomicObject Created: <class 'sfc_models.sector_definitions.FixedMarginBusiness'> ID = 5
+Adding Sector BUS To Country C1
  [ID=5] Variable Added: F = F=LAG_F # Financial assets # Financial assets
  [ID=5] Variable Added: INC = INC=0.0 # Income (PreTax) # Income (PreTax)
  [ID=5] Variable Added: LAG_F = F(k-1) # Previous periods financial assets.
-    Registering cash flow exclusion: DEM_GOOD for ID=5
- [ID=5] Variable Added: AlphaIncome = 0.6000 # Parameter for consumption out of income
- [ID=5] Variable Added: AlphaFin = 0.4000 # Parameter for consumption out of financial assets
- [ID=5] Variable Added: DEM_GOOD = AlphaIncome * AfterTax + AlphaFin * LAG_F # Expenditure on goods consumption
- [ID=5] Variable Added: AfterTax = INC - T # Aftertax income
- [ID=5] Variable Added: T =  # Taxes paid.
- [ID=5] Variable Added: SUP_LAB = 0. # Supply of Labour
- [ID=5] Equation set: DEM_GOOD = AlphaIncome * EXP_AfterTax + AlphaFin * LAG_F 
- [ID=5] Variable Added: LAG_AfterTax = AfterTax(k-1) # Lagged Aftertax income
- [ID=5] Variable Added: EXP_AfterTax = LAG_AfterTax # Expected Aftertax income
-EconomicObject Created: <class 'sfc_models.sector_definitions.FixedMarginBusiness'> ID = 6
-Adding Sector BUS To Country C1
- [ID=6] Variable Added: F = F=LAG_F # Financial assets # Financial assets
- [ID=6] Variable Added: INC = INC=0.0 # Income (PreTax) # Income (PreTax)
- [ID=6] Variable Added: LAG_F = F(k-1) # Previous periods financial assets.
- [ID=6] Variable Added: SUP_GOOD =  # Supply of goods
- [ID=6] Variable Added: PROF = SUP_GOOD - DEM_LAB # Profits
-EconomicObject Created: <class 'sfc_models.sector_definitions.TaxFlow'> ID = 7
+ [ID=5] Variable Added: SUP_GOOD =  # Supply of goods
+ [ID=5] Variable Added: PROF = SUP_GOOD - DEM_LAB # Profits
+EconomicObject Created: <class 'sfc_models.sector_definitions.TaxFlow'> ID = 6
 Adding Sector TF To Country C1
- [ID=7] Variable Added: TaxRate = 0.2000 # Tax rate
- [ID=7] Variable Added: T =  # Taxes Paid
-EconomicObject Created: <class 'sfc_models.sector.Market'> ID = 8
+ [ID=6] Variable Added: TaxRate = 0.2000 # Tax rate
+ [ID=6] Variable Added: T =  # Taxes Paid
+EconomicObject Created: <class 'sfc_models.sector.Market'> ID = 7
 Adding Sector LAB To Country C1
- [ID=8] Variable Added: SUP_LAB =  # Supply for market LAB
- [ID=8] Variable Added: DEM_LAB =  # Demand for market LAB
-EconomicObject Created: <class 'sfc_models.sector.Market'> ID = 9
+ [ID=7] Variable Added: SUP_LAB =  # Supply for market LAB
+ [ID=7] Variable Added: DEM_LAB =  # Demand for market LAB
+EconomicObject Created: <class 'sfc_models.sector.Market'> ID = 8
 Adding Sector GOOD To Country C1
- [ID=9] Variable Added: SUP_GOOD =  # Supply for market GOOD
- [ID=9] Variable Added: DEM_GOOD =  # Demand for market GOOD
-    Adding exogenous variable: DEM_GOOD in <sfc_models.sector_definitions.ConsolidatedGovernment object at 0x7f918325bb70>
+ [ID=8] Variable Added: SUP_GOOD =  # Supply for market GOOD
+ [ID=8] Variable Added: DEM_GOOD =  # Demand for market GOOD
+    Adding exogenous variable: DEM_GOOD in <sfc_models.sector_definitions.ConsolidatedGovernment object at 0x7fe1cb35b940>
     Adding initial condition: AfterTax in HH
 Starting Model main()
   Generating FullSector codes (Model._GenerateFullSectorCodes()
 Model._GenerateEquations()
   Calling _GenerateEquations on GOV  (<class 'sfc_models.sector_definitions.ConsolidatedGovernment'>)
   Calling _GenerateEquations on HH  (<class 'sfc_models.sector_definitions.HouseholdWithExpectations'>)
- [ID=5] Equation set: AlphaIncome = 0.6000 
- [ID=5] Equation set: AlphaFin = 0.4000 
+ [ID=4] Equation set: AlphaIncome = 0.6000 
+ [ID=4] Equation set: AlphaFin = 0.4000 
   Calling _GenerateEquations on BUS  (<class 'sfc_models.sector_definitions.FixedMarginBusiness'>)
    Searching for Market Sector with Code GOOD in parent country
- [ID=6] Variable Added: DEM_LAB = GOOD__SUP_GOOD # Demand for labour
+ [ID=5] Variable Added: DEM_LAB = GOOD__SUP_GOOD # Demand for labour
   Calling _GenerateEquations on TF  (<class 'sfc_models.sector_definitions.TaxFlow'>)
- [ID=7] Equation set: TaxRate = 0.2000 
- [ID=5] Equation set: T = TF__TaxRate * HH__INC 
- [ID=7] Equation set: T = TF__TaxRate * HH__INC 
- [ID=4] Equation set: T = TF__T 
+ [ID=6] Equation set: TaxRate = 0.2000 
+ [ID=4] Equation set: T = TF__TaxRate * HH__INC 
+ [ID=6] Equation set: T = TF__TaxRate * HH__INC 
+ [ID=3] Equation set: T = TF__T 
   Calling _GenerateEquations on LAB  (<class 'sfc_models.sector.Market'>)
   Market LAB searching Country C1 for a supplier
   Searching for demand for market LAB
-  [ID=8] Variable Overwritten: DEM_LAB
- [ID=8] Variable Added: DEM_LAB =  # Demand for Market LAB
+  [ID=7] Variable Overwritten: DEM_LAB
+ [ID=7] Variable Added: DEM_LAB =  # Demand for Market LAB
          Variable DEM_LAB does not exist in GOV
          Variable DEM_LAB does not exist in HH
          Variable DEM_LAB does not exist in TF
          Variable DEM_LAB does not exist in GOOD
- [ID=8] Equation set: DEM_LAB =  BUS__DEM_LAB 
- [ID=8] Equation set: SUP_LAB = DEM_LAB 
- [ID=8] Variable Added: SUP_HH = SUP_LAB # Supply from Household
- Adding term +LAB__SUP_HH to Equation SUP_LAB in Sector HH [ID=5]
+ [ID=7] Equation set: DEM_LAB =  BUS__DEM_LAB 
+ [ID=7] Equation set: SUP_LAB = DEM_LAB 
+ [ID=7] Variable Added: SUP_HH = SUP_LAB # Supply from Household
+ Adding term +LAB__SUP_HH to Equation SUP_LAB in Sector HH [ID=4]
   Calling _GenerateEquations on GOOD  (<class 'sfc_models.sector.Market'>)
   Market GOOD searching Country C1 for a supplier
   Searching for demand for market GOOD
-  [ID=9] Variable Overwritten: DEM_GOOD
- [ID=9] Variable Added: DEM_GOOD =  # Demand for Market GOOD
- [ID=4] Equation set: DEM_GOOD =  
+  [ID=8] Variable Overwritten: DEM_GOOD
+ [ID=8] Variable Added: DEM_GOOD =  # Demand for Market GOOD
+ [ID=3] Equation set: DEM_GOOD =  
          Variable DEM_GOOD does not exist in BUS
          Variable DEM_GOOD does not exist in TF
          Variable DEM_GOOD does not exist in LAB
- [ID=9] Equation set: DEM_GOOD =  GOV__DEM_GOOD+ HH__DEM_GOOD 
- [ID=9] Equation set: SUP_GOOD = DEM_GOOD 
- [ID=9] Variable Added: SUP_BUS = SUP_GOOD # Supply from Business Sector
- Adding term +GOOD__SUP_BUS to Equation SUP_GOOD in Sector BUS [ID=6]
+ [ID=8] Equation set: DEM_GOOD =  GOV__DEM_GOOD+ HH__DEM_GOOD 
+ [ID=8] Equation set: SUP_GOOD = DEM_GOOD 
+ [ID=8] Variable Added: SUP_BUS = SUP_GOOD # Supply from Business Sector
+ Adding term +GOOD__SUP_BUS to Equation SUP_GOOD in Sector BUS [ID=5]
   Fixing aliases (Model._FixAliases)
 Model._GenerateRegisteredCashFlows()
   Adding 0 cash flows to sectors
   Processing 1 exogenous variables
- [ID=4] Equation set: DEM_GOOD = EXOGENOUS [0.,] + [20.,] * 105 
+ [ID=3] Equation set: DEM_GOOD = EXOGENOUS [0.,] + [20.,] * 105 
 Model._CreateFinalEquations()
   Generating 1 initial conditions
     _FinalEquationFormatting()
