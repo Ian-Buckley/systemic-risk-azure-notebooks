@@ -3,7 +3,7 @@ Some Jupyter notebooks demonstrating various types of models for systemic financ
 network construction, network analytics, statistical stress-testing & economic models. 
 Many of these can be run on Azure, when the required R & python packages are supported.  
 * https://notebooks.azure.com/ian-buckley/libraries/systemic-risk
-* https://github.com/roguetrainer/systemic-risk  
+* https://github.com/Ian-Buckley/systemic-risk-azure-notebooks  
 
 ## Summary table
 |Name`   ` |Language`   `|Package`       ` |Author`       ` |Description`       ` |Publication`       ` |
